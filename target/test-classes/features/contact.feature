@@ -5,6 +5,7 @@ Feature: send message by contact
   Background:
     When click contact button on the header
 
+    @contact
   Scenario: send message
     And enter "mailfil@pm.com" for contact_email
     And enter "sdfsdfsdf" for contact_name

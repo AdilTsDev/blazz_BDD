@@ -1,10 +1,11 @@
 package com.demoblaze.steps;
 
 
+import com.demoblaze.pages.HomePage;
+import com.demoblaze.pages.modal.SignUpModal;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
@@ -15,26 +16,29 @@ public class SignupSteps {
 
     @And("click signup link on the header")
     public void clickSignupLinkOnTheHeader() throws InterruptedException {
-        WebElement signupLink = driver.findElement(By.id("signin2"));
-        signupLink.click();
+        HomePage homePage = new HomePage();
+        homePage.getSignupLink().click();
         Thread.sleep(1000);
     }
 
     //enter username and password
     @And("enter {string} for signup_username")
     public void enterForSignup_username(String username) {
-        driver.findElement(By.id("sign-username")).sendKeys(username);
+        SignUpModal signUpModal = new SignUpModal();
+        signUpModal.getSignUpName().sendKeys(username);
     }
 
     @And("enter {string} for signup_password")
     public void enterForSignup_password(String password) {
-        driver.findElement(By.id("sign-password")).sendKeys(password);
+        SignUpModal signUpModal = new SignUpModal();
+        signUpModal.getSignUpPassword().sendKeys(password);
     }
 
     //click sign up after input
     @And("click the SignUp Button")
     public void clickTheSignUpButton() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"signInModal\"]/div/div/div[3]/button[2]")).click();
+        SignUpModal signUpModal = new SignUpModal();
+        signUpModal.getSubmitButton().click();
         Thread.sleep(1000);
 
     }

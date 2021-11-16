@@ -2,6 +2,8 @@
 package com.demoblaze.steps;
 
 
+import com.demoblaze.pages.HomePage;
+import com.demoblaze.pages.modal.LoginModal;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,25 +19,28 @@ public class LoginSteps {
     //background
     @Given("click login link on the header")
     public void click_login_link_on_the_header() throws InterruptedException {
-        WebElement loginLink = driver.findElement(By.id("login2"));
-        loginLink.click();
+        HomePage homePage = new HomePage();
+        homePage.getLoginLink().click();
         Thread.sleep(1000);
     }
 
     //enter username and password and click the login
     @And("enter {string} for username")
     public void enterForUsername(String username) {
-        driver.findElement(By.id("loginusername")).sendKeys(username);
+        LoginModal loginModal = new LoginModal();
+        loginModal.getLoginUsername().sendKeys(username);
 
     }
     @And("enter {string} for password")
     public void enterForPassword(String password) {
-        driver.findElement(By.id("loginpassword")).sendKeys(password);
+        LoginModal loginModal = new LoginModal();
+        loginModal.getLoginPassword().sendKeys(password);
     }
 
     @And("click the login button")
     public void clickTheLoginButton() {
-        driver.findElement(By.xpath("//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")).click();
+        LoginModal loginModal = new LoginModal();
+        loginModal.getLoginButton().click();;
     }
 
     //verify

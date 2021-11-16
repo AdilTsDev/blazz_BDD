@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue = {"com/demoblaze"},
-        tags = "",
+        tags = "@contact",
         dryRun = false,
         publish = true
 

@@ -1,5 +1,8 @@
 package com.demoblaze.steps;
 
+import com.demoblaze.pages.HomePage;
+import com.demoblaze.pages.ProductPage;
+import com.demoblaze.pages.ShoppingCartPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
@@ -12,13 +15,15 @@ public class ShoppingCartSteps {
     // first item added and go to cart verify
     @And("click the first item at homep page")
     public void clickTheFirstItemAtHomepPage() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id='tbodyid']/div[1]/div/a/img")).click();
+        HomePage homePage = new HomePage();
+        homePage.getFirstItem().click();
         Thread.sleep(2000);
     }
 
     @And("click add to the cart button at product page")
     public void clickAddToTheCartButtonAtProductPage() throws InterruptedException {
-        driver.findElement(By.cssSelector("#tbodyid > div.row > div > a")).click();
+        ProductPage productPage = new ProductPage();
+        productPage.getAddToCartButton().click();
         Thread.sleep(2000);
     }
 
@@ -32,13 +37,15 @@ public class ShoppingCartSteps {
     public void clickTheCartButton() throws InterruptedException {
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
-        driver.findElement(By.id("cartur")).click();
+        HomePage homePage = new HomePage();
+        homePage.getCartLink().click();
         Thread.sleep(1000);
     }
 
     @Then("verify that item is displayed at cart page")
     public void verifyThatItemIsDisplayedAtCartPage() {
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/tr/td[1]/img")).isDisplayed());
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
+        Assert.assertTrue(shoppingCartPage.getItemInCart().isDisplayed());
 
     }
 
@@ -46,12 +53,14 @@ public class ShoppingCartSteps {
     // delete items
     @And("click delete button for delete")
     public void clickDeleteButtonForDelete() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/tr/td[4]/a")).click();
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
+        shoppingCartPage.getDeleteButton().click();
         Thread.sleep(2000);
     }
 
     @Then("verify that cart is empty")
     public void verifyThatCartIsEmpty() {
-        Assert.assertTrue(driver.findElement(By.id("totalp")).getText().isEmpty());
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
+        Assert.assertTrue(shoppingCartPage.getTotalAmount().getText().isEmpty());
     }
 }
