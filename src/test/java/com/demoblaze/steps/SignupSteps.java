@@ -1,4 +1,4 @@
-package steps;
+package com.demoblaze.steps;
 
 
 import io.cucumber.java.en.And;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
-import static steps.Hooks.driver;
+import static com.demoblaze.base.Hooks.driver;
 
 public class SignupSteps {
 

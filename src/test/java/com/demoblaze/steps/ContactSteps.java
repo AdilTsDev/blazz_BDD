@@ -1,15 +1,16 @@
-package steps;
+package com.demoblaze.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import static steps.Hooks.driver;
+import static com.demoblaze.base.Hooks.driver;
 
 public class ContactSteps {
-    @And("click contact button on the header")
+    @When("click contact button on the header")
     public void clickContactButtonOnTheHeader() throws InterruptedException {
         WebElement contactLink = driver.findElement(By.cssSelector("#navbarExample > ul > li:nth-child(2) > a"));
         contactLink.click();

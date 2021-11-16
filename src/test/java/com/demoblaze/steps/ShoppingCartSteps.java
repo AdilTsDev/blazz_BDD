@@ -1,11 +1,11 @@
-package steps;
+package com.demoblaze.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
-import static steps.Hooks.driver;
+import static com.demoblaze.base.Hooks.driver;
 
 public class ShoppingCartSteps {
 
@@ -40,5 +40,18 @@ public class ShoppingCartSteps {
     public void verifyThatItemIsDisplayedAtCartPage() {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/tr/td[1]/img")).isDisplayed());
 
+    }
+
+
+    // delete items
+    @And("click delete button for delete")
+    public void clickDeleteButtonForDelete() throws InterruptedException {
+        driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/tr/td[4]/a")).click();
+        Thread.sleep(2000);
+    }
+
+    @Then("verify that cart is empty")
+    public void verifyThatCartIsEmpty() {
+        Assert.assertTrue(driver.findElement(By.id("totalp")).getText().isEmpty());
     }
 }
